@@ -114,7 +114,7 @@ h1.htitle span{color:var(--accent)}
 .infra-item::before{content:'→';color:var(--accent);font-family:'DM Mono',monospace;font-size:15px;flex-shrink:0}
 
 /* ── TICKER ESTUDIOS ────────────────────── */
-#estudios-ticker .t-slot img{max-width:140px;max-height:60px;object-fit:contain;display:block}
+#estudios-ticker .t-slot img{width:160px;height:70px;object-fit:contain;object-position:center;display:block}
 
 /* ── INTERNACIONALIZACIÓN ────────────────── */
 #internacional{background:var(--dark)}
@@ -313,7 +313,8 @@ footer{background:var(--mid);border-top:1px solid var(--rule);padding:28px 72px;
 <section id="hero" style="padding:0">
   <video class="hero-grid" autoplay muted loop playsinline preload="metadata">
     <!-- REEMPLAZA "./video.mp4" por la ruta de tu video -->
-    <source src="./Laed Web.webm" type="video/mp4">
+    <source src="./Laed Web.webm" type="video/webm">
+    <source src="./Laed Web.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-left">
@@ -395,7 +396,7 @@ footer{background:var(--mid);border-top:1px solid var(--rule);padding:28px 72px;
       <div class="t-slot"><img src="./img/Marvel_Studios_2016_logo.svg.png" alt="Marvel Studios" loading="lazy"></div>
       <div class="t-slot"><img src="./img/Logonetflix.png" alt="Netflix" loading="lazy"></div>
       <div class="t-slot"><img src="./img/logo-DreamWorks-1.png" alt="DreamWorks" loading="lazy"></div>
-      <div class="t-slot"><img src="D:\LADV\img\mpc.png" alt="MPC" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/mpc.png" alt="MPC" loading="lazy"></div>
       <!-- REPETIR PARA LOOP INFINITO -->
       <div class="t-slot"><img src="./img/Sony_Pictures_Imageworks_logo.svg.png" alt="Sony Pictures Imageworks" loading="lazy"></div>
       <div class="t-slot"><img src="./img/Ubisoft_logo.svg" alt="Ubisoft" loading="lazy"></div>
@@ -678,12 +679,12 @@ footer{background:var(--mid);border-top:1px solid var(--rule);padding:28px 72px;
   </div>
 
   <div class="gal-grid">
-    <!-- IMAGEN 1: Concept Art & Ilustración -->
+    <!-- IMAGEN 1: Concept Art, Storyboard & Ilustración -->
     <div class="gal-item" data-filter="concept" onclick="openGalModal(this)">
       <img src="./img/galeria/trabajo-1.png" alt="Trabajo de alumno 1" loading="lazy">
       <div class="gal-overlay">
         <div class="gal-name">Gonzalo Ramos</div>
-        <div class="gal-tech">Concept Art & Illustration</div>
+        <div class="gal-tech">Storyboard</div>
       </div>
     </div>
 
