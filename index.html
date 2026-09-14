@@ -6,19 +6,10 @@
   ├── index.html (este archivo)
   ├── video.mp4 (video hero - REEMPLAZA "./video.mp4")
   └── logos/
-      ├── sony.png
-      ├── ubisoft.svg
-      ├── disney.svg
-      ├── reelfx.png
-      ├── marvel.png
-      ├── netflix.png
-      ├── mpc.png
-      └── dreamworks.png
 
   OPTIMIZACIÓN:
-  - Comprime video a max 3MB (ffmpeg -i input.mp4 -vf scale=1920:1080 -c:v libx264 -crf 28 output.mp4)
+  - Video a max 3MB (ffmpeg -i input.mp4 -vf scale=1920:1080 -c:v libx264 -crf 28 output.mp4)
   - Logos: PNG máx 50KB cada uno, SVG nativos
-  - Lazy loading automático en todas las imágenes
 -->
 <html lang="es">
 <head>
@@ -61,11 +52,13 @@ h2.sec-title span{color:var(--accent)}
 .hero-right{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:96px 72px 80px 32px;gap:20px}
 h1.htitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(54px,6vw,88px);line-height:.9;letter-spacing:.02em;color:var(--white);margin-bottom:28px}
 h1.htitle span{color:var(--accent)}
-.hero-sub{font-size:16px;color:var(--muted);line-height:1.75;max-width:420px;margin-bottom:36px}
+.hero-sub{font-size:16px;color:var(--white);line-height:1.75;max-width:420px;margin-bottom:36px}
 .hero-tagline{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:36px;font-style:italic}
 .badges{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:44px}
 .badge{font-family:'DM Mono',monospace;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;padding:5px 13px;border:1px solid var(--faint);color:var(--white)}
 .badge.on{border-color:var(--accent);color:var(--accent);background:rgba(255,224,51,.06)}
+.hero-badge-epic{display:flex;justify-content:flex-start;align-items:center;margin-top:20px;margin-bottom:24px}
+.badge-epic{height:150px;width:auto;max-width:200px;object-fit:contain;display:block}
 .btns{display:flex;gap:14px;flex-wrap:wrap}
 .btn-y{background:var(--accent);color:var(--dark);font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:13px 26px;border:none;cursor:pointer;text-decoration:none;transition:opacity .2s;display:inline-block}
 .btn-y:hover{opacity:.85}
@@ -135,13 +128,19 @@ h1.htitle span{color:var(--accent)}
 /* ── EGRESADOS ───────────────────────────── */
 #egresados{background:var(--mid)}
 .egr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:2px}
-.egr-card{background:var(--card);padding:28px 24px;border-top:2px solid transparent;transition:all .25s}
+.egr-card{background:var(--card);overflow:hidden;border-top:2px solid transparent;transition:all .25s;display:flex;flex-direction:column;height:100%}
 .egr-card:hover{border-top-color:var(--accent);background:#202020}
-.egr-init{width:48px;height:48px;background:var(--faint);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--accent);margin-bottom:14px}
+.egr-project-img{width:100%;aspect-ratio:16/6;background:var(--faint);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.egr-project-img img{width:100%;height:100%;object-fit:cover;display:block}
+.egr-bottom{display:flex;flex-direction:row;gap:14px;padding:18px}
+.egr-photo{width:110px;min-width:110px;height:110px;background:var(--faint);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;border-radius:4px}
+.egr-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.egr-info{padding:0;flex:1;display:flex;flex-direction:column;justify-content:center}
+.egr-init{width:48px;height:48px;background:rgba(255,224,51,.1);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--accent);margin-bottom:10px}
 .egr-name{font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px}
-.egr-role{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
-.egr-studio{font-size:14px;color:var(--muted);margin-bottom:10px}
-.egr-prods{font-size:13px;color:rgba(255,224,51,.55);font-style:italic;border-top:1px solid var(--rule);padding-top:8px;line-height:1.5}
+.egr-role{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.egr-studio{font-size:13px;color:var(--muted);margin-bottom:10px}
+.egr-prods{font-size:12px;color:rgba(255,224,51,.55);font-style:italic;border-top:1px solid var(--rule);padding-top:8px;line-height:1.5}
 
 /* ── TESTIMONIOS ─────────────────────────── */
 #testimonios{background:var(--dark)}
@@ -209,6 +208,32 @@ footer{background:var(--mid);border-top:1px solid var(--rule);padding:28px 72px;
 .t-slot span{font-family:'Bebas Neue',sans-serif;font-size:25px;letter-spacing:.08em;color:var(--faint);transition:color .3s}
 .t-slot:hover span{color:var(--white)}
 
+/* ── GALERÍA DE ALUMNOS ────────────────────── */
+#galeria{background:var(--dark)}
+.gal-filters{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;justify-content:center}
+.gal-filter{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--faint);color:var(--muted);background:transparent;cursor:pointer;transition:all .25s}
+.gal-filter.active{border-color:var(--accent);color:var(--accent);background:rgba(255,224,51,.08)}
+.gal-filter:hover{border-color:var(--accent);color:var(--accent)}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px}
+.gal-item{aspect-ratio:1;background:var(--card);overflow:hidden;cursor:pointer;position:relative;group}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.gal-item:hover img{transform:scale(1.05)}
+.gal-overlay{position:absolute;inset:0;background:rgba(13,13,13,.8);backdrop-filter:blur(4px);display:flex;flex-direction:column;justify-content:flex-end;padding:16px;opacity:0;transition:opacity .3s ease;color:var(--white)}
+.gal-item:hover .gal-overlay{opacity:1}
+.gal-name{font-size:14px;font-weight:700;margin-bottom:4px}
+.gal-tech{font-size:12px;color:var(--accent);font-family:'DM Mono',monospace;letter-spacing:.08em}
+
+/* ── MODAL GALERÍA ────────────────────────── */
+.gal-modal{display:none;position:fixed;inset:0;background:rgba(13,13,13,.95);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px)}
+.gal-modal.active{display:flex}
+.gal-modal-content{position:relative;max-width:90vh;max-height:90vh}
+.gal-modal img{width:100%;height:100%;object-fit:contain}
+.gal-modal-close{position:absolute;top:-40px;right:0;font-size:32px;color:var(--accent);cursor:pointer;font-family:'DM Mono',monospace;transition:transform .2s}
+.gal-modal-close:hover{transform:scale(1.2)}
+.gal-modal-info{color:var(--white);margin-top:16px;text-align:center;font-size:14px}
+.gal-modal-name{font-weight:700;margin-bottom:4px}
+.gal-modal-tech{color:var(--accent);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.08em}
+
 /* ── RESPONSIVE ───────────────────────────── */
 @media(max-width:960px){
   nav{padding:0 20px;height:56px}.nav-links{display:none}
@@ -216,9 +241,10 @@ footer{background:var(--mid);border-top:1px solid var(--rule);padding:28px 72px;
   #hero video{width:100%;height:100%;object-fit:cover;object-position:center center}
   .hero-left{padding:64px 24px 32px;text-align:center}
   .hero-right{padding:0 24px 56px;flex-direction:column}
+  .hero-badge-epic{justify-content:center}
   .badges{justify-content:center}
   .btns{justify-content:center;gap:10px}
-  h1.htitle{font-size:clamp(80px,12vw,64px)}
+  h1.htitle{font-size:clamp(40px,8vw,64px)}
   section{padding:56px 24px}
   #tools{grid-template-columns:1fr;gap:36px;padding:56px 24px}
   #perfiles{grid-template-columns:1fr}
@@ -227,6 +253,10 @@ footer{background:var(--mid);border-top:1px solid var(--rule);padding:28px 72px;
   .diff-grid,.campo-grid{grid-template-columns:repeat(2,1fr)}
   .intl-grid{grid-template-columns:1fr}
   .egr-grid{grid-template-columns:repeat(2,1fr)}
+  .egr-project-img{aspect-ratio:16/6}
+  .egr-photo{width:95px;height:95px}
+  .egr-bottom{gap:12px;padding:16px}
+  .gal-grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
   .test-grid{grid-template-columns:1fr}
   .comp-grid{grid-template-columns:repeat(3,1fr)}
   footer{flex-direction:column;gap:12px;text-align:center;padding:20px 24px}
@@ -237,7 +267,9 @@ footer{background:var(--mid);border-top:1px solid var(--rule);padding:28px 72px;
   #hero video{object-position:60% center}
   .hero-left{padding:32px 16px;text-align:center}
   .hero-right{padding:32px 16px;gap:12px}
-  h1.htitle{font-size:clamp(60px,6vw,40px);line-height:.95}
+  h1.htitle{font-size:clamp(28px,6vw,40px);line-height:.95}
+  .hero-badge-epic{margin-top:16px;margin-bottom:20px}
+  .badge-epic{height:36px;max-width:160px}
   .hero-sub{font-size:14px;max-width:100%}
   .hero-tagline{font-size:14px}
   .badges{gap:6px;justify-content:center;flex-wrap:wrap}
@@ -249,7 +281,14 @@ footer{background:var(--mid);border-top:1px solid var(--rule);padding:28px 72px;
   .tray-num{font-size:28px}
   .tray-name{font-size:16px}
   .tray-desc{font-size:13px}
-  .diff-grid,.campo-grid,.egr-grid,.comp-grid{grid-template-columns:1fr}
+  .egr-grid{grid-template-columns:1fr}
+  .egr-project-img{aspect-ratio:16/6}
+  .egr-photo{width:85px;height:85px}
+  .egr-bottom{padding:14px;gap:12px}
+  .egr-info{font-size:12px}
+  .gal-grid{grid-template-columns:repeat(2,1fr);gap:1px}
+  .gal-filters{gap:6px;font-size:10px}
+  .gal-filter{padding:6px 12px;font-size:9px}
   #stats{grid-template-columns:1fr 1fr}
   .stat-num{font-size:36px}
 }
@@ -264,6 +303,7 @@ footer{background:var(--mid);border-top:1px solid var(--rule);padding:28px 72px;
     <li><a href="#trayectorias">Trayectorias</a></li>
     <li><a href="#campo">Campo laboral</a></li>
     <li><a href="#egresados">Egresados</a></li>
+    <li><a href="#galeria">Galería</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <a href="#cta-final" class="nav-cta">Quiero inscribirme</a>
@@ -273,16 +313,19 @@ footer{background:var(--mid);border-top:1px solid var(--rule);padding:28px 72px;
 <section id="hero" style="padding:0">
   <video class="hero-grid" autoplay muted loop playsinline preload="metadata">
     <!-- REEMPLAZA "./video.mp4" por la ruta de tu video -->
-    <source src="D:\LADV\LAED WEB.mov" type="video/mp4">
+    <source src="./Laed Web.webm" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-left">
     <div class="eyebrow">Universidad de Monterrey · LADV</div>
     <h1 class="htitle">Animación Digital<br>& <span>Diseño de</span><br>Videojuegos</h1>
+    <!-- BADGE EPIC GAMES: reemplazar ruta -->
+    <div class="hero-badge-epic">
+      <img src="./img/UAP_UDEM.png" alt="Unreal Academic Partner" class="badge-epic">
+    </div>
     <p class="hero-tagline">Transforma ideas en historias y experiencias que conectan con las personas.</p>
-    <p class="hero-sub">Crea personajes, mundos y experiencias reales a través del arte, el storytelling y la tecnología. Forma parte de la industria global de la animación, los videojuegos y el cine.</p>
+    <p class="hero-sub">Crea personajes, mundos y experiencias reales a través del arte, el storytelling y la tecnología. Forma parte de la industria global de la animación, los videojuegos y el entretenimiento.</p>
     <div class="badges">
-      <span class="badge on">● Unreal Academic Partner 2026</span>
       <span class="badge">Monterrey, MX</span>
       <span class="badge">3 Líneas terminales</span>
       <span class="badge">Industria global</span>
@@ -344,24 +387,24 @@ footer{background:var(--mid);border-top:1px solid var(--rule);padding:28px 72px;
   <p class="ticker-label">Egresados trabajando en estudios como</p>
   <div class="ticker-wrap">
     <div class="ticker-inner">
-      <!-- REEMPLAZA "./logos/" por la carpeta de tus logos -->
-      <div class="t-slot"><img src="D:\LADV\img\Sony_Pictures_Imageworks_logo.svg.png" alt="Sony Pictures Imageworks" loading="lazy"></div>
-      <div class="t-slot"><img src="D:\LADV\img\Ubisoft_logo.svg" alt="Ubisoft" loading="lazy"></div>
-      <div class="t-slot"><img src="D:\LADV\img\Walt_Disney_Animation_Studios_logo.svg" alt="Walt Disney Animation" loading="lazy"></div>
-      <div class="t-slot"><img src="D:\LADV\img\Reel_FX_Animation_Studios_logo.png" alt="Reel FX" loading="lazy"></div>
-      <div class="t-slot"><img src="D:\LADV\img\Marvel_Studios_2016_logo.svg.png" alt="Marvel Studios" loading="lazy"></div>
-      <div class="t-slot"><img src="D:\LADV\img\Logonetflix.png" alt="Netflix" loading="lazy"></div>
-      <div class="t-slot"><img src="./logos/mpc.png" alt="MPC" loading="lazy"></div>
-      <div class="t-slot"><img src=d:\LADV\img\logo-DreamWorks-1.png alt="DreamWorks" loading="lazy"></div>
+      <!-- LOGOS: editar rutas según tu carpeta de assets (ej: ./img/, ./assets/, etc) -->
+      <div class="t-slot"><img src="./img/Sony_Pictures_Imageworks_logo.svg.png" alt="Sony Pictures Imageworks" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/ubisoft.png" alt="Ubisoft" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/wd.png" alt="Walt Disney Animation" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/Reel_FX_Animation_Studios_logo.png" alt="Reel FX" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/Marvel_Studios_2016_logo.svg.png" alt="Marvel Studios" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/Logonetflix.png" alt="Netflix" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/logo-DreamWorks-1.png" alt="DreamWorks" loading="lazy"></div>
+      <div class="t-slot"><img src="D:\LADV\img\mpc.png" alt="MPC" loading="lazy"></div>
       <!-- REPETIR PARA LOOP INFINITO -->
-      <div class="t-slot"><img src="D:\LADV\img\Sony_Pictures_Imageworks_logo.svg.png" alt="Sony Pictures Imageworks" loading="lazy"></div>
-      <div class="t-slot"><img src="D:\LADV\img\Ubisoft_logo.svg" alt="Ubisoft" loading="lazy"></div>
-      <div class="t-slot"><img src="D:\LADV\img\Walt_Disney_Animation_Studios_logo.svg" alt="Walt Disney Animation" loading="lazy"></div>
-      <div class="t-slot"><img src="./logos/reelfx.png" alt="Reel FX" loading="lazy"></div>
-      <div class="t-slot"><img src="./logos/marvel.png" alt="Marvel Studios" loading="lazy"></div>
-      <div class="t-slot"><img src="./logos/netflix.png" alt="Netflix" loading="lazy"></div>
-      <div class="t-slot"><img src="./logos/mpc.png" alt="MPC" loading="lazy"></div>
-      <div class="t-slot"><img src="./logos/dreamworks.png" alt="DreamWorks" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/Sony_Pictures_Imageworks_logo.svg.png" alt="Sony Pictures Imageworks" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/Ubisoft_logo.svg" alt="Ubisoft" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/wd.png" alt="Walt Disney Animation" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/Reel_FX_Animation_Studios_logo.png" alt="Reel FX" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/Marvel_Studios_2016_logo.svg.png" alt="Marvel Studios" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/Logonetflix.png" alt="Netflix" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/logo-DreamWorks-1.png" alt="DreamWorks" loading="lazy"></div>
+      <div class="t-slot"><img src="./img/mpc.png" alt="MPC" loading="lazy"></div>
     </div>
   </div>
 </div>
@@ -519,70 +562,243 @@ footer{background:var(--mid);border-top:1px solid var(--rule);padding:28px 72px;
   <h2 class="sec-title">Historias de <span>éxito real</span></h2>
   <div class="egr-grid">
     <div class="egr-card">
-      <div class="egr-init">MU</div>
-      <div class="egr-name">Mariana Urbina Cantú</div>
-      <div class="egr-role">VFX Lighting Artist</div>
-      <div class="egr-studio">MPC / Technicolor Creative Studios</div>
-      <div class="egr-prods">House of the Dragon · Ant-Man Quantumania · Aquaman · Atlas · Kraven the Hunter</div>
+      <div class="egr-project-img"><!-- IMAGEN PROYECTO: Mariana Urbina - reemplazar ruta --><img src="./img/proyectos/mariana proyecto.jpeg" alt="Proyectos de Mariana Urbina"></div>
+      <div class="egr-bottom">
+        <div class="egr-photo"><!-- FOTO EGRESADO 1: Mariana Urbina Cantú - reemplazar ruta --><img src="./img/Mariana urbina.jpg" alt="Mariana Urbina Cantú"></div>
+        <div class="egr-info">
+          <div class="egr-name">Mariana Urbina Cantú</div>
+          <div class="egr-role">VFX Lighting Artist</div>
+          <div class="egr-studio">MPC / Technicolor Creative Studios</div>
+        </div>
+      </div>
     </div>
     <div class="egr-card">
-      <div class="egr-init">EM</div>
-      <div class="egr-name">Erin Morales Muñoz</div>
-      <div class="egr-role">Senior Character FX Artist</div>
-      <div class="egr-studio">Sony Pictures Imageworks</div>
-      <div class="egr-prods">K-Pop Demon Hunters · Kung Fu Panda 4 · Thor: L&T · Ms. Marvel · The Wild Robot</div>
+      <div class="egr-project-img"><!-- IMAGEN PROYECTO: Erin Morales - reemplazar ruta --><img src="./img/proyectos/erin-proyecto.jpg" alt="Proyectos de Erin Morales"></div>
+      <div class="egr-bottom">
+        <div class="egr-photo"><!-- FOTO EGRESADO 2: Erin Morales Muñoz - reemplazar ruta --><img src="./img/erin.jpg" alt="Erin Morales Muñoz"></div>
+        <div class="egr-info">
+          <div class="egr-name">Erin Morales Muñoz</div>
+          <div class="egr-role">Senior Character FX Artist</div>
+          <div class="egr-studio">Sony Pictures Imageworks</div>
+        </div>
+      </div>
     </div>
     <div class="egr-card">
-      <div class="egr-init">AS</div>
-      <div class="egr-name">Ana Salazar</div>
-      <div class="egr-role">Animation Artist</div>
-      <div class="egr-studio">Walt Disney Animation Studios</div>
-      <div class="egr-prods">Moana 2 · Zootopia 2 · Encanto</div>
+      <div class="egr-project-img"><!-- IMAGEN PROYECTO: Ana Salazar - reemplazar ruta --><img src="./img/proyectos/ana-proyecto.png" alt="Proyectos de Ana Salazar"></div>
+      <div class="egr-bottom">
+        <div class="egr-photo"><!-- FOTO EGRESADO 3: Ana Salazar - reemplazar ruta --><img src="./img/ana.jpg" alt="Ana Salazar"></div>
+        <div class="egr-info">
+          <div class="egr-name">Ana Salazar</div>
+          <div class="egr-role">Animation Artist</div>
+          <div class="egr-studio">Walt Disney Animation Studios</div>
+        </div>
+      </div>
     </div>
     <div class="egr-card">
-      <div class="egr-init">GQ</div>
-      <div class="egr-name">Gabriela Quintanilla</div>
-      <div class="egr-role">Character Effects Artist</div>
-      <div class="egr-studio">Sony Pictures Imageworks</div>
-      <div class="egr-prods">GOAT · Producciones de animación internacional</div>
+      <div class="egr-project-img"><!-- IMAGEN PROYECTO: Gabriela Quintanilla - reemplazar ruta --><img src="./img/proyectos/erin-proyecto.jpg" alt="Proyectos de Gabriela Quintanilla"></div>
+      <div class="egr-bottom">
+        <div class="egr-photo"><!-- FOTO EGRESADO 4: Gabriela Quintanilla - reemplazar ruta --><img src="./img/gabi.jpg" alt="Gabriela Quintanilla"></div>
+        <div class="egr-info">
+          <div class="egr-name">Gabriela Quintanilla</div>
+          <div class="egr-role">Character Effects Artist</div>
+          <div class="egr-studio">Sony Pictures Imageworks</div>
+        </div>
+      </div>
     </div>
     <div class="egr-card">
-      <div class="egr-init">AM</div>
-      <div class="egr-name">Alan Morales</div>
-      <div class="egr-role">Character Animator</div>
-      <div class="egr-studio">Ubisoft</div>
-      <div class="egr-prods">Assassin's Creed Shadows · AAA Game Cinematics</div>
+      <div class="egr-project-img"><!-- IMAGEN PROYECTO: Alan Morales - reemplazar ruta --><img src="./img/proyectos/alan-proyecto.jpg" alt="Proyectos de Alan Morales"></div>
+      <div class="egr-bottom">
+        <div class="egr-photo"><!-- FOTO EGRESADO 5: Alan Morales - reemplazar ruta --><img src="./img/alan.jpg" alt="Alan Morales"></div>
+        <div class="egr-info">
+          <div class="egr-name">Alan Morales</div>
+          <div class="egr-role">Character Animator</div>
+          <div class="egr-studio">Ubisoft</div>
+        </div>
+      </div>
     </div>
     <div class="egr-card">
-      <div class="egr-init">AC</div>
-      <div class="egr-name">Andrea Cortés</div>
-      <div class="egr-role">Character FX Artist</div>
-      <div class="egr-studio">Sony Pictures Imageworks</div>
-      <div class="egr-prods">Spider-Man: Brand New Day</div>
+      <div class="egr-project-img"><!-- IMAGEN PROYECTO: Andrea Cortés - reemplazar ruta --><img src="./img/proyectos/andrea-proyecto.jpg" alt="Proyectos de Andrea Cortés"></div>
+      <div class="egr-bottom">
+        <div class="egr-photo"><!-- FOTO EGRESADO 6: Andrea Cortés - reemplazar ruta --><img src="./img/andrea.jpg" alt="Andrea Cortés"></div>
+        <div class="egr-info">
+          <div class="egr-name">Andrea Cortés</div>
+          <div class="egr-role">Character FX Artist</div>
+          <div class="egr-studio">Sony Pictures Imageworks</div>
+        </div>
+      </div>
     </div>
     <div class="egr-card">
-      <div class="egr-init">MA</div>
-      <div class="egr-name">Michelle Arreola</div>
-      <div class="egr-role">Animation Artist</div>
-      <div class="egr-studio">Reel FX</div>
-      <div class="egr-prods">Teenage Mutant Ninja Turtles</div>
+      <div class="egr-project-img"><!-- IMAGEN PROYECTO: Michelle Arreola - reemplazar ruta --><img src="./img/proyectos/michelle-proyecto.jpg" alt="Proyectos de Michelle Arreola"></div>
+      <div class="egr-bottom">
+        <div class="egr-photo"><!-- FOTO EGRESADO 7: Michelle Arreola - reemplazar ruta --><img src="./img/michelle.jpg" alt="Michelle Arreola"></div>
+        <div class="egr-info">
+          <div class="egr-name">Michelle Arreola</div>
+          <div class="egr-role">Animation Artist</div>
+          <div class="egr-studio">Reel FX</div>
+        </div>
+      </div>
     </div>
     <div class="egr-card">
-      <div class="egr-init">AF</div>
-      <div class="egr-name">Angie Fuentes</div>
-      <div class="egr-role">Character FX Artist</div>
-      <div class="egr-studio">Sony Pictures Imageworks · MPC</div>
-      <div class="egr-prods">The Fantastic Four · GOAT</div>
+      <div class="egr-project-img"><!-- IMAGEN PROYECTO: Angie Fuentes - reemplazar ruta --><img src="./img/proyectos/angie-proyecto.jpg" alt="Proyectos de Angie Fuentes"></div>
+      <div class="egr-bottom">
+        <div class="egr-photo"><!-- FOTO EGRESADO 8: Angie Fuentes - reemplazar ruta --><img src="./img/angie.jpg" alt="Angie Fuentes"></div>
+        <div class="egr-info">
+          <div class="egr-name">Angie Fuentes</div>
+          <div class="egr-role">Character FX Artist</div>
+          <div class="egr-studio">Sony Pictures Imageworks · MPC</div>
+        </div>
+      </div>
     </div>
     <div class="egr-card">
-      <div class="egr-init">PB</div>
-      <div class="egr-name">Pedro Barrera</div>
-      <div class="egr-role">Animator</div>
-      <div class="egr-studio">Ubisoft</div>
-      <div class="egr-prods">Proyectos AAA</div>
+      <div class="egr-project-img"><!-- IMAGEN PROYECTO: Pedro Barrera - reemplazar ruta --><img src="./img/proyectos/pedro-proyecto.jpg" alt="Proyectos de Pedro Barrera"></div>
+      <div class="egr-bottom">
+        <div class="egr-photo"><!-- FOTO EGRESADO 9: Pedro Barrera - reemplazar ruta --><img src="./img/pedro.jpg" alt="Pedro Barrera"></div>
+        <div class="egr-info">
+          <div class="egr-name">Pedro Barrera</div>
+          <div class="egr-role">Animator</div>
+          <div class="egr-studio">Ubisoft</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- GALERÍA DE ALUMNOS -->
+<section id="galeria">
+  <div class="sec-eye">Creatividad en acción</div>
+  <h2 class="sec-title">Galería de <span>trabajos de alumnos</span></h2>
+  
+  <div class="gal-filters">
+    <button class="gal-filter active" data-filter="all">ALL</button>
+    <button class="gal-filter" data-filter="concept">Concept Art & Ilustración</button>
+    <button class="gal-filter" data-filter="3d">Modelado de personajes</button>
+    <button class="gal-filter" data-filter="motion">Modelado de escenarios</button>
+    <button class="gal-filter" data-filter="figure">Cortometrajes 2D</button>
+    <button class="gal-filter" data-filter="gameArt">Game Art</button>
+  </div>
+
+  <div class="gal-grid">
+    <!-- IMAGEN 1: Concept Art & Ilustración -->
+    <div class="gal-item" data-filter="concept" onclick="openGalModal(this)">
+      <img src="./img/galeria/trabajo-1.png" alt="Trabajo de alumno 1" loading="lazy">
+      <div class="gal-overlay">
+        <div class="gal-name">Gonzalo Ramos</div>
+        <div class="gal-tech">Concept Art & Illustration</div>
+      </div>
+    </div>
+
+    <!-- IMAGEN 2: Modelado de personajes -->
+    <div class="gal-item" data-filter="3d" onclick="openGalModal(this)">
+      <img src="./img/galeria/trabajo-2.jpg" alt="Trabajo de alumno 2" loading="lazy">
+      <div class="gal-overlay">
+        <div class="gal-name">Valeria Villarreal</div>
+        <div class="gal-tech">3D Animation, VFX & 3D Modeling</div>
+      </div>
+    </div>
+
+    <!-- IMAGEN 3: Modelado de escenarios -->
+    <div class="gal-item" data-filter="motion" onclick="openGalModal(this)">
+      <img src="./img/galeria/trabajo-3.jpg" alt="Trabajo de alumno 3" loading="lazy">
+      <div class="gal-overlay">
+        <div class="gal-name">Maria Cristina Saavedra - AURA</div>
+        <div class="gal-tech">Motion & Graphic Design</div>
+      </div>
+    </div>
+
+    <!-- IMAGEN 4: Cortometrajes 2D -->
+    <div class="gal-item" data-filter="figure" onclick="openGalModal(this)">
+      <img src="./img/galeria/trabajo-4.jpg" alt="Trabajo de alumno 4" loading="lazy">
+      <div class="gal-overlay">
+        <div class="gal-name">Afterlight</div>
+        <div class="gal-tech">Figure & Product Design</div>
+      </div>
+    </div>
+
+    <!-- IMAGEN 5: Game Art -->
+    <div class="gal-item" data-filter="gameArt" onclick="openGalModal(this)">
+      <img src="./img/galeria/trabajo-5.jpg" alt="Trabajo de alumno 5" loading="lazy">
+      <div class="gal-overlay">
+        <div class="gal-name">Erick Lacavex</div>
+        <div class="gal-tech">Game Art & 3D Animation</div>
+      </div>
+    </div>
+
+    <!-- IMAGEN 6: Concept Art & Ilustración -->
+    <div class="gal-item" data-filter="concept" onclick="openGalModal(this)">
+      <img src="./img/galeria/trabajo-6.jpg" alt="Trabajo de alumno 6" loading="lazy">
+      <div class="gal-overlay">
+        <div class="gal-name">Deyani Savall</div>
+        <div class="gal-tech">Concept Art & Illustration</div>
+      </div>
+    </div>
+
+    <!-- IMAGEN 7: Modelado de personajes -->
+    <div class="gal-item" data-filter="3d" onclick="openGalModal(this)">
+      <img src="./img/galeria/trabajo-7.jpg" alt="Trabajo de alumno 7" loading="lazy">
+      <div class="gal-overlay">
+        <div class="gal-name">Mariana Cordova</div>
+        <div class="gal-tech">3D Animation, VFX & 3D Modeling</div>
+      </div>
+    </div>
+
+    <!-- IMAGEN 8: Modelado de escenarios -->
+    <div class="gal-item" data-filter="motion" onclick="openGalModal(this)">
+      <img src="./img/galeria/trabajo-8.jpg" alt="Trabajo de alumno 8" loading="lazy">
+      <div class="gal-overlay">
+        <div class="gal-name">Ximena Mendez</div>
+        <div class="gal-tech">Motion & Graphic Design</div>
+      </div>
+    </div>
+
+    <!-- IMAGEN 9: Cortometrajes 2D -->
+    <div class="gal-item" data-filter="figure" onclick="openGalModal(this)">
+      <img src="./img/galeria/trabajo-9.png" alt="Trabajo de alumno 9" loading="lazy">
+      <div class="gal-overlay">
+        <div class="gal-name">Beat box king</div>
+        <div class="gal-tech">Figure & Product Design</div>
+      </div>
+    </div>
+
+    <!-- IMAGEN 10: Game Art -->
+    <div class="gal-item" data-filter="gameArt" onclick="openGalModal(this)">
+      <img src="./img/galeria/trabajo-10.jpg" alt="Trabajo de alumno 10" loading="lazy">
+      <div class="gal-overlay">
+        <div class="gal-name">Mara Diaz</div>
+        <div class="gal-tech">Game Art & 3D Animation</div>
+      </div>
+    </div>
+
+    <!-- IMAGEN 11: Concept Art & Ilustración -->
+    <div class="gal-item" data-filter="concept" onclick="openGalModal(this)">
+      <img src="./img/galeria/trabajo-11.png" alt="Trabajo de alumno 11" loading="lazy">
+      <div class="gal-overlay">
+        <div class="gal-name">Serydia Cortez</div>
+        <div class="gal-tech">Concept Art & Illustration</div>
+      </div>
+    </div>
+
+    <!-- IMAGEN 12: Modelado de personajes -->
+    <div class="gal-item" data-filter="3d" onclick="openGalModal(this)">
+      <img src="./img/galeria/trabajo-12.jpg" alt="Trabajo de alumno 12" loading="lazy">
+      <div class="gal-overlay">
+        <div class="gal-name">Ana Valeria Cantú</div>
+        <div class="gal-tech">3D Animation, VFX & 3D Modeling</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL GALERÍA -->
+<div id="gal-modal" class="gal-modal">
+  <div class="gal-modal-content">
+    <span class="gal-modal-close" onclick="closeGalModal()">×</span>
+    <img id="gal-modal-img" src="" alt="">
+    <div class="gal-modal-info">
+      <div class="gal-modal-name" id="gal-modal-name"></div>
+      <div class="gal-modal-tech" id="gal-modal-tech"></div>
+    </div>
+  </div>
+</div>
 
 <!-- TESTIMONIOS -->
 <section id="testimonios">
@@ -727,13 +943,51 @@ footer{background:var(--mid);border-top:1px solid var(--rule);padding:28px 72px;
 </footer>
 
 <script>
+// ── FAQ TOGGLE ──
 function toggleFAQ(btn) {
   var item = btn.parentElement;
   var wasOpen = item.classList.contains('open');
   document.querySelectorAll('.faq-item.open').forEach(function(el){ el.classList.remove('open'); });
   if (!wasOpen) item.classList.add('open');
 }
-// Smooth scroll for anchor links
+
+// ── GALERÍA FILTROS ──
+document.querySelectorAll('.gal-filter').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var filter = this.getAttribute('data-filter');
+    document.querySelectorAll('.gal-filter').forEach(function(b){ b.classList.remove('active'); });
+    this.classList.add('active');
+    document.querySelectorAll('.gal-item').forEach(function(item) {
+      if (filter === 'all' || item.getAttribute('data-filter') === filter) {
+        item.style.display = '';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+});
+
+// ── GALERÍA MODAL ──
+function openGalModal(element) {
+  var img = element.querySelector('img');
+  var name = element.querySelector('.gal-name').textContent;
+  var tech = element.querySelector('.gal-tech').textContent;
+  document.getElementById('gal-modal-img').src = img.src;
+  document.getElementById('gal-modal-name').textContent = name;
+  document.getElementById('gal-modal-tech').textContent = tech;
+  document.getElementById('gal-modal').classList.add('active');
+}
+function closeGalModal() {
+  document.getElementById('gal-modal').classList.remove('active');
+}
+document.getElementById('gal-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeGalModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeGalModal();
+});
+
+// ── SMOOTH SCROLL ──
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   a.addEventListener('click', function(e) {
     var target = document.querySelector(this.getAttribute('href'));
